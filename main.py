@@ -3,25 +3,28 @@ from probki import utworz_liste_stron
 
 
 # dane wejściowe: nazwa wypracowania - pisana z '_' pomiędzy wyrazami
-nazwa_wypracowania = "wypracowani_z_Adama_Mickiewicza_Dziady"
+nazwa_wypracowania = "Miłość_romantyczna"
 
 # dane wejściowe: lista list zawierająca nazwisko i imię ucznia, zakres stron (może być 1-3, albo tylko 3)
 # ilość stron musi być identyczna jak w dokumencie wejściowym, strony numerujemy od 1, ostatni uczeń musi mieć końcową stronę
-lista_uczniow_i_stron_wejscie = [["Węgłowska Natalia", "1-2"], ["Witek Ewa", "3-4"], ["Sowa Adam", "5"], ["Gal Anonim", "6"]]
+# lista_uczniow_i_stron_wejscie = [["Węgłowska Natalia", "1-2"], ["Witek Ewa", "3-4"], ["Sowa Adam", "5"], ["Gal Anonim", "6"]]
+lista_uczniow_i_stron_wejscie = [["Kierat Wiktoria", "1-2"], ["Buriak Julia", "3-5"], ["Bandosz Zuzanna", "6-7"],["Sieradzki Robert", "8-9"],
+                                 ["Muczyń Maciej", "10-11"],["Wierzejska Hanna", "12-14"],["Zabielski Antoni", "15-16"],
+                                 ["Fiszer Filip", "17-18"],["Janiec Małgorzata", "19-20"],["Brzeska Amelia", "21-22"],["Ciechalska Marcelina", "23-25"],
+                                ["Ostaszewicz Zuzanna", "26-30"]]
 
 # dane wejściowe: pomiędzy cudzysłowy należy wstawić nazwę pliku pdf z rozszerzeniem, np CCF25102020.pdf
-wejsciowy_pdf = "CCF25102020.pdf"
-
-
-
-
+wejsciowy_pdf = "CCF01112020_0001.pdf"
 
 
 
 # wstawiam '_' pomiędzy nazwisko i imię
 lista_uczniow_i_stron = [[x.replace(" ","_"),y] for [x,y] in lista_uczniow_i_stron_wejscie]
 
-
+# niewielka walidacja: sprawdzam czy ostatnia strona ostatniego ucznia równa się liczbie stron w pdf. do lewej
+# strony porównania musze dodać 1, bo tam sę indeksuje/liczy od zera, a po prawej liczba stron jest liczona od 1
+if utworz_liste_stron(lista_uczniow_i_stron)[-1][-1] +1 != PdfFileReader(wejsciowy_pdf).getNumPages():
+    print(f"BŁĄD: Liczba stron w {wejsciowy_pdf} nie równa się liczbie stron przydzielonych do prac uczniów!")
 
 def zrob_nazwy_plikow(lista_wejsciowa, nazwa_wypracowania):
     zwrotka = []

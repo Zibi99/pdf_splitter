@@ -15,6 +15,9 @@ wejsciowy_pdf = "CCF25102020.pdf"
 
 
 
+
+
+
 # wstawiam '_' pomiędzy nazwisko i imię
 lista_uczniow_i_stron = [[x.replace(" ","_"),y] for [x,y] in lista_uczniow_i_stron_wejscie]
 
@@ -38,6 +41,8 @@ def pdf_splitter(wejsciowy_pdf, nazwa_wypracowania, lista_uczniow_i_stron):
     # print("lista_stron_wszystkich_uczniow", lista_stron_wszystkich_uczniow)
     # print("\n")
 
+    utworzonych_plikow = 0
+
     for indeks, wypracowanie in enumerate(nazwa_wypracowania_wewnatrzna):
         # print("Pierwszy for, indeks ", indeks, wypracowanie)
         pdf_writer = PdfFileWriter()
@@ -59,9 +64,10 @@ def pdf_splitter(wejsciowy_pdf, nazwa_wypracowania, lista_uczniow_i_stron):
             output_filename = str(nazwa_wypracowania_wewnatrzna[indeks][0])+".pdf"
             with open(output_filename, 'wb') as out:
                 pdf_writer.write(out)
-#             print(f'Utworzyłem {output_filename}')
+        utworzonych_plikow +=1
+
 #
-#         print("\n")
+    print(f"Utworzono {utworzonych_plikow} plików")
 #
 try:
     pdf_splitter(wejsciowy_pdf, nazwa_wypracowania, lista_uczniow_i_stron)

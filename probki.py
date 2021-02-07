@@ -35,4 +35,5 @@ def utworz_liste_stron(lista_wejsciowa):
         koncowa_lista.append(posrednia_lista)
     return koncowa_lista
 
-# print(utworz_liste_stron(lista_wejsciowa))
+
+

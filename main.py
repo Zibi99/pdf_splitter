@@ -2,24 +2,26 @@ from PyPDF2 import PdfFileReader, PdfFileWriter
 from probki import utworz_liste_stron
 
 
-# dane wejściowe: nazwa wypracowania - pisana z '_' pomiędzy wyrazami
-nazwa_wypracowania = "Miłość_romantyczna"
+# dane wejściowe: nazwa wypracowania - PISANA ZE SPACJĄ pomiędzy wyrazami
+nazwa_wypracowania = "Różewicz i Zapolska"
 
 # dane wejściowe: lista list zawierająca nazwisko i imię ucznia, zakres stron (może być 1-3, albo tylko 3)
 # ilość stron musi być identyczna jak w dokumencie wejściowym, strony numerujemy od 1, ostatni uczeń musi mieć końcową stronę
 # lista_uczniow_i_stron_wejscie = [["Węgłowska Natalia", "1-2"], ["Witek Ewa", "3-4"], ["Sowa Adam", "5"], ["Gal Anonim", "6"]]
-lista_uczniow_i_stron_wejscie = [["Kierat Wiktoria", "1-2"], ["Buriak Julia", "3-5"], ["Bandosz Zuzanna", "6-7"],["Sieradzki Robert", "8-9"],
-                                 ["Muczyń Maciej", "10-11"],["Wierzejska Hanna", "12-14"],["Zabielski Antoni", "15-16"],
-                                 ["Fiszer Filip", "17-18"],["Janiec Małgorzata", "19-20"],["Brzeska Amelia", "21-22"],["Ciechalska Marcelina", "23-25"],
-                                ["Ostaszewicz Zuzanna", "26-30"]]
+
+lista_uczniow_i_stron_wejscie = [["Mędza Luna", "1-3"], ["Yasynska Masha", "4-5"], ["Gawałkiewicz Weronika", "6-7"],["Mączka Julia", "8-9"],
+]
 
 # dane wejściowe: pomiędzy cudzysłowy należy wstawić nazwę pliku pdf z rozszerzeniem, np CCF25102020.pdf
-wejsciowy_pdf = "CCF01112020_0001.pdf"
+wejsciowy_pdf = "CCF07022021_0001.pdf"
 
 
 
 # wstawiam '_' pomiędzy nazwisko i imię
 lista_uczniow_i_stron = [[x.replace(" ","_"),y] for [x,y] in lista_uczniow_i_stron_wejscie]
+
+# wstawiam '_' pomiędzy nazwę wypracowania
+nazwa_wypracowania = nazwa_wypracowania.replace(" ", "_")
 
 # niewielka walidacja: sprawdzam czy ostatnia strona ostatniego ucznia równa się liczbie stron w pdf. do lewej
 # strony porównania musze dodać 1, bo tam sę indeksuje/liczy od zera, a po prawej liczba stron jest liczona od 1

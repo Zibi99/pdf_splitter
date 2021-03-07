@@ -35,5 +35,26 @@ def utworz_liste_stron(lista_wejsciowa):
         koncowa_lista.append(posrednia_lista)
     return koncowa_lista
 
+def utworz_nazwe_skanu_wielostornicowego():
 
+    import os
+    import datetime
+
+    current_time = datetime.datetime.now()
+    pliki = os.listdir()
+
+    # dodaję 0 dnia i miesiąca, żeby utworzyć nazwę pliku z datą
+    miesiac = '0' + str(current_time.month) if len(str(current_time.month)) == 1 else str(current_time.month)
+    dzien = '0' + str(current_time.day) if len(str(current_time.day)) == 1 else str(current_time.day)
+    nazwa_oczekiwana_poczatek = 'CCF' + dzien + miesiac + str(current_time.year)
+
+    # sprawdzam czy w bieżącym katalogu jest plik zaczynający się prawidłowo - zeskanowany dziś plik wielostronicowy
+    # ze wszystkimi pracami
+    pliki_z_prawidlowym_poczatkiem = [x for x in pliki if str(x).startswith(nazwa_oczekiwana_poczatek)]
+
+    # zwracam tylko pierwszy znaleziony element
+    if len(pliki_z_prawidlowym_poczatkiem)> 0:
+        return 'SKUCES', pliki_z_prawidlowym_poczatkiem[0]
+    else:
+        return 'BŁĄD', f'BŁĄD: w katalogu skryptu brak dzisiejszego pliku pdf zaczynającego się na {nazwa_oczekiwana_poczatek}'
 
